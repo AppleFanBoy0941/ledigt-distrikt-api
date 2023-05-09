@@ -1,24 +1,27 @@
 {
-  "name": "ledigt-distrikt-api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+	"name": "ledigt-distrikt-api",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
 	"type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AppleFanBoy0941/ledigt-distrikt-api.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AppleFanBoy0941/ledigt-distrikt-api/issues"
-  },
-  "homepage": "https://github.com/AppleFanBoy0941/ledigt-distrikt-api#readme",
-  "dependencies": {
-    "express": "^4.18.2"
-  }
+	"engines": {
+		"node": "14.x"
+	},
+	"scripts": {
+		"start": "node app.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/AppleFanBoy0941/ledigt-distrikt-api.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/AppleFanBoy0941/ledigt-distrikt-api/issues"
+	},
+	"homepage": "https://github.com/AppleFanBoy0941/ledigt-distrikt-api#readme",
+	"dependencies": {
+		"express": "^4.18.2"
+	}
 }
