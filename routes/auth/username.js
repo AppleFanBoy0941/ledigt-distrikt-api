@@ -1,8 +1,6 @@
 import User from '../../models/user.model.js'
 
 export default async function username(request, response) {
-	response.status(200).send({ message: 'Det her virker i det mindste' }).end()
-	return
 	if (!request.body || !request.body.username) {
 		response.status(400).send({ message: 'Username is required to log in' }).end()
 		return
@@ -28,8 +26,10 @@ export default async function username(request, response) {
 		}
 
 		response.status(200).send({ activated: true, message: 'Username exists and is activated' }).end()
+		return
 	} catch (error) {
 		console.log('Authentication error', error)
 		response.status(500).send({ message: 'Authentication error', error: error })
+		return
 	}
 }
