@@ -2,8 +2,9 @@ import { Schema } from 'mongoose'
 
 const ReportSchema = new Schema({
 	date: {
-		type: Date,
+		type: String,
 		required: true,
+		trim: true,
 	},
 	user: {
 		type: Schema.Types.ObjectId,

@@ -9,7 +9,7 @@ export default async function getGlobalReports(request, response) {
 		if (globalReport.length < 1) {
 			const newDate = new Date()
 			const newReport = new GlobalReport({
-				date: new Date(`${newDate.getFullYear()}-${newDate.getMonth() + 1}-${newDate.getDate()}`),
+				date: `${newDate.getFullYear()}-${newDate.getMonth() + 1}-${newDate.getDate()}`,
 			})
 			await newReport.save()
 
@@ -26,7 +26,7 @@ export default async function getGlobalReports(request, response) {
 	if (globalReport.length < 1) {
 		const newDate = new Date()
 		const newReport = new GlobalReport({
-			date: new Date(`${newDate.getFullYear()}-${newDate.getMonth() + 1}-${newDate.getDate()}`),
+			date: `${newDate.getFullYear()}-${newDate.getMonth() + 1}-${newDate.getDate()}`,
 		})
 		await newReport.save()
 

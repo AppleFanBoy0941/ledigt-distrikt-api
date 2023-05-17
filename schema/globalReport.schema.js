@@ -2,9 +2,9 @@ import { Schema } from 'mongoose'
 
 const GlobalReportSchema = new Schema({
 	date: {
-		type: Date,
+		type: String,
 		required: true,
-		unique: true,
+		trim: true,
 	},
 	hours: {
 		type: Number,

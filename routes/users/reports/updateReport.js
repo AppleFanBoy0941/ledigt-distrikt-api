@@ -57,7 +57,7 @@ export default async function updateReport(request, response) {
 		}
 
 		try {
-			const oldReport = await Report.findOne({ date: new Date(date).toISOString(), user: userid })
+			const oldReport = await Report.findOne({ date, user: userid })
 
 			const newReport = {
 				hours: oldReport.hours + body.hours,
@@ -67,24 +67,20 @@ export default async function updateReport(request, response) {
 				videos: oldReport.videos + body.videos,
 			}
 
-			const report = await Report.findOneAndUpdate(
-				{ date: new Date(date).toISOString(), user: userid },
-				{ ...newReport },
-				{ new: true }
-			)
+			const report = await Report.findOneAndUpdate({ date, user: userid }, { ...newReport }, { new: true })
 
 			if (!report) {
 				response.status(404).send({ message: 'Could not find any reports matching this ID' }).end()
 				return
 			}
 
-			const updatedReport = await Report.findOne({ date: new Date(date).toISOString(), user: userid })
+			const updatedReport = await Report.findOne({ date, user: userid })
 
-			const globalReport = await GlobalReport.findOne({ date: new Date(date).toISOString() })
+			const globalReport = await GlobalReport.findOne({ date })
 
 			if (!globalReport) {
 				const newGlobalReport = new GlobalReport({
-					date: new Date(date).toISOString(),
+					date,
 					...body,
 				})
 				await newGlobalReport.save()

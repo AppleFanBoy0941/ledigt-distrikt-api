@@ -16,7 +16,7 @@ export default async function createReport(request, response) {
 
 	try {
 		const report = await Report.create({
-			date: new Date(dateString).toISOString(),
+			date: dateString,
 			user: new ObjectId(userid),
 			hours: 0,
 			publications: 0,

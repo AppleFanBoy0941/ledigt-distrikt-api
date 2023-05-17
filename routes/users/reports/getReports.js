@@ -41,7 +41,7 @@ export default async function getReports(request, response) {
 		}
 
 		try {
-			const report = await Report.findOne({ date: new Date(date).toISOString(), user: userid })
+			const report = await Report.findOne({ date, user: userid })
 
 			if (!report) {
 				if (createNewIfEmpty) {
