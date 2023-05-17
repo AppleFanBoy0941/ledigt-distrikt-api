@@ -98,10 +98,10 @@ export default async function updateReport(request, response) {
 				await globalReport.save()
 			}
 
-			response.status(200).send({ message: 'Report updated', report: updatedReport })
+			response.status(200).send({ message: 'Report updated', report: updatedReport, global: globalReport })
+			return
 		} catch (error) {
 			defaultError(response, error)
-		} finally {
 			return
 		}
 	}
