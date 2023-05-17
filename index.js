@@ -15,6 +15,14 @@ app.listen(5500, () => {
 	console.log('Running on port 5500')
 })
 
+app
+	.route('/')
+	.all((request, response) =>
+		response
+			.status(200)
+			.send({ message: "Hej, velkommen til Ledigt Distrikt Dovre 2023-api'et. Håber det fungerer godt for dig" })
+	)
+
 users(app)
 auth(app)
 reports(app)
