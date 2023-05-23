@@ -13,11 +13,11 @@ export default async function getGlobalReports(request, response) {
 			})
 			await newReport.save()
 
-			response.status(201).send({ message: 'No global report found, but new was created', reports: newReport })
+			response.status(201).send({ success: true, message: 'No global report found, but new was created', reports: newReport })
 			return
 		}
 
-		response.status(200).send({ message: 'Report found', reports: globalReport })
+		response.status(200).send({ success: true, message: 'Report found', reports: globalReport })
 		return
 	}
 
@@ -30,10 +30,10 @@ export default async function getGlobalReports(request, response) {
 		})
 		await newReport.save()
 
-		response.status(201).send({ message: 'No global report found, but new was created', reports: newReport })
+		response.status(201).send({ success: true, message: 'No global report found, but new was created', reports: newReport })
 		return
 	}
 
-	response.status(200).send({ message: 'Report found', reports: globalReport })
+	response.status(200).send({ success: true, message: 'Report found', reports: globalReport })
 	return
 }

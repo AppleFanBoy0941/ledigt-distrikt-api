@@ -25,10 +25,11 @@ export default async function getUsers(request, response) {
 			skip === 0 ? null : process.env.HOST_URL + `/api/v1/users?limit=${limit}&skip=${skip - limit < 0 ? 0 : skip - limit}`
 
 		const presentation = {
+			success: true,
 			count: length,
 			next: nextLink,
 			prev: prevLink,
-			data: users.map(user => ({
+			users: users.map(user => ({
 				...user._doc,
 				url: URLBuilder('users', user._id),
 			})),
@@ -36,7 +37,7 @@ export default async function getUsers(request, response) {
 
 		response
 			.status(200)
-			.send(id ? users[0] : presentation)
+			.send(id ? { success: true, user: users[0] } : presentation)
 			.end()
 	} catch (error) {
 		defaultError(response, error)

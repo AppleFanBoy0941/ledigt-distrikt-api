@@ -20,7 +20,7 @@ app
 	.all((request, response) =>
 		response
 			.status(200)
-			.send({ message: "Hej, velkommen til Ledigt Distrikt Dovre 2023-api'et. Håber det fungerer godt for dig" })
+			.send({success: true, message: "Hej, velkommen til Ledigt Distrikt Dovre 2023-api'et. Håber det fungerer godt for dig" })
 	)
 
 users(app)

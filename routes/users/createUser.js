@@ -5,7 +5,7 @@ import defaultError from '../../functions/defaultError.js'
 
 export default async function createUser(request, response) {
 	if (isEmpty(request.body)) {
-		response.status(400).send({ message: 'Mangler information' }).end()
+		response.status(400).send({ success: false, message: 'Mangler information' }).end()
 
 		return
 	}
@@ -13,11 +13,14 @@ export default async function createUser(request, response) {
 	const creator = await User.findById(request.userid)
 
 	if (!creator) {
-		response.status(403).send({ message: 'Ugyldig bruger, hent et nyt token og prøv igen' }).end()
+		response.status(403).send({ success: false, message: 'Ugyldig bruger, hent et nyt token og prøv igen' }).end()
 	}
 
 	if (!roleValidator(creator.role, ['super-admin'])) {
-		response.status(403).send({ message: 'Ugyldig bruger, kun brugere med rollen "super-admin" kan oprette nye brugere' }).end()
+		response
+			.status(403)
+			.send({ success: false, message: 'Ugyldig bruger, kun brugere med rollen "super-admin" kan oprette nye brugere' })
+			.end()
 	}
 
 	const verbs = [
@@ -65,7 +68,9 @@ export default async function createUser(request, response) {
 
 		await user.save()
 
-		response.status(201).send(user).end()
+		console.log(user)
+
+		response.status(201).send({ success: true, message: 'User created', user: user }).end()
 	} catch (error) {
 		defaultError(response, error)
 	}

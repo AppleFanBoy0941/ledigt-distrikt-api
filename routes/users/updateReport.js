@@ -7,7 +7,7 @@ export default async function updateReport(request, response) {
 	const user = await User.findById(request.userid)
 
 	if (userid !== request.userid || !roleValidator(user.role, ['super-admin'])) {
-		response.status(401).send({ message: 'An error occurred' }).end()
+		response.status(401).send({ success: true, message: 'An error occurred' }).end()
 		return
 	}
 }

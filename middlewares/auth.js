@@ -3,13 +3,13 @@ import User from '../models/user.model.js'
 
 export default async function auth(request, response, next) {
 	if (!request.headers.authorization) {
-		response.status(401).send({ message: 'Unauthorized, no authorization received' }).end()
+		response.status(401).send({ success: false, message: 'Unauthorized, no authorization received' }).end()
 		return
 	}
 
 	const authHeader = request.headers.authorization.split(' ')
 	if (authHeader.length !== 2 || authHeader[0].toLowerCase() !== 'basic') {
-		response.status(401).send({ message: 'Unauthorized, no Basic authorization received' })
+		response.status(401).send({ success: false, message: 'Unauthorized, no Basic authorization received' })
 		return
 	}
 
@@ -21,7 +21,7 @@ export default async function auth(request, response, next) {
 		const user = await User.findOne({ username, password })
 
 		if (!user) {
-			response.status(401).send({ message: 'Invalid credentials' })
+			response.status(401).send({ success: false, message: 'Invalid credentials' })
 		}
 
 		request.userid = user.id

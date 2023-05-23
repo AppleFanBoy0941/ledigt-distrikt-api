@@ -2,7 +2,7 @@ import User from '../../models/user.model.js'
 
 export default async function username(request, response) {
 	if (!request.body || !request.body.username) {
-		response.status(400).send({ message: 'Username is required to log in' }).end()
+		response.status(400).send({ success: false, message: 'Username is required to log in' }).end()
 		return
 	}
 
@@ -12,7 +12,7 @@ export default async function username(request, response) {
 		if (!user) {
 			response
 				.status(404)
-				.send({ message: 'Could not find user with username: ' + request.body.username })
+				.send({ success: false, message: 'Could not find user with username: ' + request.body.username })
 				.end()
 			return
 		}
@@ -20,16 +20,21 @@ export default async function username(request, response) {
 		if (!user.activated) {
 			response
 				.status(200)
-				.send({ password: user.password, activated: false, message: 'Username exists, but is not activated yet' })
+				.send({
+					success: true,
+					password: user.password,
+					activated: false,
+					message: 'Username exists, but is not activated yet',
+				})
 				.end()
 			return
 		}
 
-		response.status(200).send({ activated: true, message: 'Username exists and is activated' }).end()
+		response.status(200).send({ success: true, activated: true, message: 'Username exists and is activated' }).end()
 		return
 	} catch (error) {
 		console.log('Authentication error', error)
-		response.status(500).send({ message: 'Authentication error', error: error })
+		response.status(500).send({ success: false, message: 'Authentication error', error: error })
 		return
 	}
 }
