@@ -22,7 +22,10 @@ export default async function token(request, response) {
 			return
 		}
 
-		response.status(200).send({ success: true, username: user.username, password: user.password, id: user.id }).end()
+		response
+			.status(200)
+			.send({ success: true, username: user.username, password: user.password, id: user.id, role: user.role })
+			.end()
 
 		user.activated = true
 

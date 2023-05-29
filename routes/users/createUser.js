@@ -14,6 +14,7 @@ export default async function createUser(request, response) {
 
 	if (!creator) {
 		response.status(403).send({ success: false, message: 'Ugyldig bruger, hent et nyt token og prøv igen' }).end()
+		return
 	}
 
 	if (!roleValidator(creator.role, ['super-admin'])) {
@@ -21,6 +22,7 @@ export default async function createUser(request, response) {
 			.status(403)
 			.send({ success: false, message: 'Ugyldig bruger, kun brugere med rollen "super-admin" kan oprette nye brugere' })
 			.end()
+		return
 	}
 
 	const user = await User.findOne({ username: request.body.username })
