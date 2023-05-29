@@ -23,6 +23,13 @@ export default async function createUser(request, response) {
 			.end()
 	}
 
+	const user = await User.findOne({ username: request.body.username })
+
+	if (user) {
+		response.status(403).send({ success: false, message: 'Username already exist' }).end()
+		return
+	}
+
 	const verbs = [
 		'Dansende',
 		'Opmuntrende',
