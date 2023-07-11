@@ -17,12 +17,17 @@ export default async function auth(request, response, next) {
 	const username = credentials[0]
 	const password = credentials[1]
 
+	console.log(username, password)
+
 	try {
 		const user = await User.findOne({ username, password })
 
-		if (!user) {
+		if (!user || user === null) {
 			response.status(401).send({ success: false, message: 'Invalid credentials' })
+			return
 		}
+
+		console.log('user:', user)
 
 		request.userid = user.id
 

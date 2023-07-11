@@ -13,7 +13,9 @@ export default async function getUsers(request, response) {
 	const limit = parseInt(request.query.limit) || 100
 	const skip = parseInt(request.query.skip) || 0
 
-	const userQuery = id ? { _id: id } : query ? query : {}
+	console.log(id, new ObjectId(id))
+
+	const userQuery = id ? { _id: new ObjectId(id) } : query ? query : {}
 
 	try {
 		const users = await User.find(userQuery).limit(limit).skip(skip).populate('report')

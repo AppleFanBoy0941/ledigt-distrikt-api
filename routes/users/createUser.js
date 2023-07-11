@@ -39,26 +39,22 @@ export default async function createUser(request, response) {
 		'Milde',
 		'Ydmyge',
 		'Ivrige',
-		'Tålmodige',
-		'Kærlige',
 		'Gudfrygtige',
 		'Gavmilde',
-		'Gæstfrie',
-		'Hjælpsomme',
 		'Fredsstiftende',
 	]
 
 	const nouns = [
-		'Ælling',
+		'Missekat',
 		'Kattekilling',
 		'Hest',
 		'Kalkun',
 		'Autocamper',
 		'Hundehvalp',
-		'Påfugl',
+		'Tulipan',
 		'Muh-ko',
 		'Plante',
-		'Trillebør',
+		'Stavblender',
 		'Stegepande',
 	]
 
